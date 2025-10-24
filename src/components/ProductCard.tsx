@@ -32,7 +32,6 @@ export interface Product {
 }
 
 export default function ProductCard({ product }: { product: Product }) {
-    const [hovered, setIsHovered] = useState(false);
     const [imageLoaded, setImageLoaded] = useState(false);
     
     // Calculate discount percentage if retailPrice exists
@@ -63,8 +62,6 @@ export default function ProductCard({ product }: { product: Product }) {
         <a 
             href={`/products/${product.id}`} 
             className="block group"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
         >
             <div className="relative rounded-lg overflow-hidden bg-white">
                 {/* Product Image with overlay */}

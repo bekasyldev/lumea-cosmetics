@@ -16,7 +16,19 @@ const socialLinks = [
     },
 ]
 
-const footerLinks = [
+interface FooterLink {
+    name: string;
+    path: string;
+    iconPath?: string;
+}
+
+interface FooterSection {
+    name: string;
+    key: string;
+    childrens: FooterLink[];
+}
+
+const footerLinks: FooterSection[] = [
     {
         name: 'Магазин',
         key: 'store',
@@ -126,7 +138,7 @@ export default function Footer() {
                                 <ul className="space-y-2 sm:space-y-3 lg:space-y-4">
                                     {section.childrens.map((link) => (
                                         <li key={link.path} className="flex items-center">
-                                            {link?.iconPath && <img src={link.iconPath} alt={`${link.name} icon`} className="inline-block w-4 h-4 sm:w-4 sm:h-4 mr-2 sm:mr-3 flex-shrink-0" />}
+                                            {link.iconPath && <img src={link.iconPath} alt={`${link.name} icon`} className="inline-block w-4 h-4 sm:w-4 sm:h-4 mr-2 sm:mr-3 flex-shrink-0" />}
                                             <a href={link.path} className="text-[#33333D] hover:text-gray-800 font-normal text-sm sm:text-sm leading-relaxed">
                                                 {link.name}
                                             </a>
