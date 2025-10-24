@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/* Hide scrollbar for mobile navigation */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Endless scroll animation for mobile navigation */
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-infinite {
+  animation: scroll-infinite 7s linear infinite;
+  will-change: transform;
+}
+
+/* Pause animation on hover/touch */
+.animate-scroll-infinite:hover {
+  animation-play-state: paused;
+}
