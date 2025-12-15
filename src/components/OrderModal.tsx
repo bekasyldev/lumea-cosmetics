@@ -27,7 +27,7 @@ ${product.retailPrice ? `🏷️ Скидка: ${discountPercentage}%` : ''}
 
 Можете рассказать подробнее о товаре и способах доставки?`;
 
-    const whatsappUrl = `https://wa.me/7766766890?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/7053371911?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
     onClose();
   };
