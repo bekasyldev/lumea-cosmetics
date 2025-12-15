@@ -116,7 +116,7 @@ export default function Footer() {
                     </div>
                     <div className='flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4'>
                         <img src="/icons/phone.svg" alt="phone icon" className="w-5 h-5 sm:w-5 sm:h-5 flex-shrink-0" />
-                        <span className="text-base sm:text-base">+7(705) 337 19 11</span>
+                        <span className="text-base sm:text-base">+7(705) 337 19 11 </span>
                     </div>
                     <div className='flex items-center space-x-2 sm:space-x-3 mb-4 sm:mb-6'>
                         <img src="/icons/clock.svg" alt="clock icon" className="w-5 h-5 sm:w-5 sm:h-5 flex-shrink-0" />
