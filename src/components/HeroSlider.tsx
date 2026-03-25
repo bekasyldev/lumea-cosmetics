@@ -56,12 +56,9 @@ export default function HeroSlider({ slides, autoplayInterval = 5000 }: HeroSlid
           >
             <div className="absolute inset-0 flex flex-col justify-center px-4 sm:px-8 lg:px-16">
               {slide.buttonText && (
-                <a 
-                  href={slide.buttonLink} 
-                  className="inline-block w-fit border border-white text-white px-4 py-2 sm:px-6 rounded-full mb-4 sm:mb-6 text-sm sm:text-base"
-                >
+                <span className="inline-block w-fit border border-white text-white px-4 py-2 sm:px-6 rounded-full mb-4 sm:mb-6 text-sm sm:text-base">
                   {slide.buttonText}
-                </a>
+                </span>
               )}
               <h2 className="text-white text-xl sm:text-2xl lg:text-4xl font-bold mb-2 sm:mb-4 max-w-xs sm:max-w-md lg:max-w-xl">{slide.title}</h2>
               <p className="text-white text-sm sm:text-lg lg:text-xl max-w-xs sm:max-w-md lg:max-w-xl">{slide.subtitle}</p>

@@ -44,63 +44,63 @@ const footerLinks: FooterSection[] = [
             { name: 'Оплата', path: '#banner' },
         ]
     },
-    {
-        name: 'Каталог',
-        key: 'catalog1',
-        childrens: [
-            { 
-            name: 'Уход за кожей',
-            path: 'route/skin-care',
-            iconPath: '/icons/skin.svg',
-        },
-        { 
-            name: 'Уход за волосами',
-            path: 'route/hair-care',
-            iconPath: '/icons/hair.svg',
-        },
-        { 
-            name: 'Макияж',
-            path: 'route/makeup',
-            iconPath: '/icons/make-up.svg',
-        },
-        { 
-            name: 'Косметика',
-            path: 'route/cosmetics',
-            iconPath: '/icons/cosmetics.svg',
-        },
-        { 
-            name: 'Ароматы',
-            path: 'route/fragrances',
-            iconPath: '/icons/perfume.svg',
-        },
-    ]
-    },
-    {
-        name: 'Каталог ',
-        key: 'catalog2',
-        childrens: [
-        { 
-            name: 'Уход для полости рта',
-            path: 'route/oral-care',
-            iconPath: '/icons/mouth.svg',
-        },
-        { 
-            name: 'Гигиена',
-            path: 'route/hygiene',
-            iconPath: '/icons/hygiene.svg',
-        },
-        { 
-            name: 'Уход для полости рта',
-            path: 'route/dental-care',
-            iconPath: '/icons/mouth.svg',
-        },
-        { 
-            name: 'Наборы',
-            path: 'route/sets',
-            iconPath: '/icons/set.svg',
-        },
-    ]
-}
+//     {
+//         name: 'Каталог',
+//         key: 'catalog1',
+//         childrens: [
+//             { 
+//             name: 'Уход за кожей',
+//             path: 'route/skin-care',
+//             iconPath: '/icons/skin.svg',
+//         },
+//         { 
+//             name: 'Уход за волосами',
+//             path: 'route/hair-care',
+//             iconPath: '/icons/hair.svg',
+//         },
+//         { 
+//             name: 'Макияж',
+//             path: 'route/makeup',
+//             iconPath: '/icons/make-up.svg',
+//         },
+//         { 
+//             name: 'Косметика',
+//             path: 'route/cosmetics',
+//             iconPath: '/icons/cosmetics.svg',
+//         },
+//         { 
+//             name: 'Ароматы',
+//             path: 'route/fragrances',
+//             iconPath: '/icons/perfume.svg',
+//         },
+//     ]
+//     },
+//     {
+//         name: 'Каталог ',
+//         key: 'catalog2',
+//         childrens: [
+//         { 
+//             name: 'Уход для полости рта',
+//             path: 'route/oral-care',
+//             iconPath: '/icons/mouth.svg',
+//         },
+//         { 
+//             name: 'Гигиена',
+//             path: 'route/hygiene',
+//             iconPath: '/icons/hygiene.svg',
+//         },
+//         { 
+//             name: 'Уход для полости рта',
+//             path: 'route/dental-care',
+//             iconPath: '/icons/mouth.svg',
+//         },
+//         { 
+//             name: 'Наборы',
+//             path: 'route/sets',
+//             iconPath: '/icons/set.svg',
+//         },
+//     ]
+// }
 
 ]
 
@@ -139,9 +139,15 @@ export default function Footer() {
                                     {section.childrens.map((link) => (
                                         <li key={link.path} className="flex items-center">
                                             {link.iconPath && <img src={link.iconPath} alt={`${link.name} icon`} className="inline-block w-4 h-4 sm:w-4 sm:h-4 mr-2 sm:mr-3 flex-shrink-0" />}
-                                            <a href={link.path} className="text-[#33333D] hover:text-gray-800 font-normal text-sm sm:text-sm leading-relaxed">
-                                                {link.name}
-                                            </a>
+                                            {link.iconPath ? (
+                                                <span className="text-[#33333D] font-normal text-sm sm:text-sm leading-relaxed">
+                                                    {link.name}
+                                                </span>
+                                            ) : (
+                                                <a href={link.path} className="text-[#33333D] hover:text-gray-800 font-normal text-sm sm:text-sm leading-relaxed">
+                                                    {link.name}
+                                                </a>
+                                            )}
                                         </li>
                                     ))}
                                 </ul>

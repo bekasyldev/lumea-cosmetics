@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { ShoppingCart } from 'lucide-react';
-import OrderModal from './OrderModal';
 
 export interface ProductVariant {
   id: string;
@@ -34,28 +32,18 @@ export interface Product {
 
 export default function ProductCard({ product }: { product: Product }) {
     const [imageLoaded, setImageLoaded] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    
-    const discountPercentage = product.retailPrice 
-        ? Math.round((1 - product.price / product.retailPrice) * 100) 
+
+    const discountPercentage = product.retailPrice
+        ? Math.round((1 - product.price / product.retailPrice) * 100)
         : product.discount || 0;
-    
+
     const hasDiscount = discountPercentage > 0;
-    
-    // Format price with spaces for thousands
-    const formatPrice = (price: number) => {
-        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    };
-    
-    const handleProductClick = (e: React.MouseEvent) => {
-        e.preventDefault();
-        setIsModalOpen(true);
-    };
-    
-    const handleAddToCart = (e: React.MouseEvent) => {
+
+    const handleAskPrice = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
-        setIsModalOpen(true);
+        const message = `Здравствуйте! Хочу узнать цену на товар: ${product.name}`;
+        window.open(`https://wa.me/7053371911?text=${encodeURIComponent(message)}`, '_blank');
     };
 
     // Reset image loaded state when product changes
@@ -65,8 +53,8 @@ export default function ProductCard({ product }: { product: Product }) {
 
     return (
         <>
-            <div 
-                onClick={handleProductClick}
+            <div
+                onClick={handleAskPrice}
                 className="block group cursor-pointer"
             >
                 <div className="relative rounded-lg overflow-hidden bg-white">
@@ -94,35 +82,26 @@ export default function ProductCard({ product }: { product: Product }) {
                             </div>
                         )}
                         
-                        {/* Add to Cart Button */}
-                        <button 
-                            className="absolute right-2 bottom-2 rounded-full bg-[#FB6F92] text-white w-10 h-10 flex items-center justify-center shadow-md transition-transform hover:scale-105"
-                            onClick={handleAddToCart}
-                            aria-label="Add to cart"
+                        {/* Ask Price Button */}
+                        <button
+                            className="absolute right-2 bottom-2 rounded-full bg-[#FB6F92] text-white text-xs font-semibold px-3 h-8 flex items-center justify-center shadow-md transition-transform hover:scale-105 whitespace-nowrap"
+                            onClick={handleAskPrice}
+                            aria-label="Узнать цену"
                         >
-                            <ShoppingCart size={18} />
+                            Узнать цену
                         </button>
                     </div>
                     
                     {/* Product Info */}
                     <div className="pt-3 pb-2">
-                        {/* Price */}
-                        <div className="font-semibold text-lg">{formatPrice(product.price)} ₸</div>
-                        
                         {/* Product Name */}
-                        <h3 className="mt-1 text-sm text-gray-700 line-clamp-2">
+                        <h3 className="text-sm text-gray-700 line-clamp-2">
                             {product.name}
                         </h3>
                     </div>
                 </div>
             </div>
 
-            {/* Order Modal */}
-            <OrderModal 
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                product={product}
-            />
         </>
     );
 }

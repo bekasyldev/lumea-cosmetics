@@ -1,6 +1,6 @@
 import { Menu } from "lucide-react";
 import SearchInput from "./SearchInput";
-import { navItems, headerButtons } from "../constants/index";
+import { headerButtons } from "../constants/index";
 
 
 
@@ -32,51 +32,43 @@ export default function Header() {
                     ))}
                 </div>
             </div>
-            <nav className='container mx-auto mt-6 overflow-hidden'>
+            {/* <nav className='container mx-auto mt-6 overflow-hidden'>
                     <div className='lg:hidden relative'>
                         <ul className='flex gap-4 animate-scroll-infinite'>
                             {navItems.map((item, index) => (
                                 <li key={`first-${index}`} className="flex-shrink-0">
-                                    <a 
-                                        href={item.path} 
-                                        className='flex items-center group relative min-w-0 whitespace-nowrap px-2'
-                                    >
+                                    <span className='flex items-center group relative min-w-0 whitespace-nowrap px-2'>
                                         <div className="flex-shrink-0 w-4 h-4 flex items-center justify-center">
-                                            <img 
-                                                src={item.iconPath} 
-                                                alt={item.name} 
-                                                width={16} 
-                                                height={16} 
+                                            <img
+                                                src={item.iconPath}
+                                                alt={item.name}
+                                                width={16}
+                                                height={16}
                                                 className="w-4 h-4 object-contain"
                                             />
                                         </div>
                                         <span className="ml-2 text-sm relative whitespace-nowrap">
                                             {item.name}
-                                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FB6F92] transition-all duration-300 group-hover:w-full"></span>
                                         </span>
-                                    </a>
+                                    </span>
                                 </li>
                             ))}
                             {navItems.map((item, index) => (
                                 <li key={`second-${index}`} className="flex-shrink-0">
-                                    <a 
-                                        href={item.path} 
-                                        className='flex items-center group relative min-w-0 whitespace-nowrap px-2'
-                                    >
+                                    <span className='flex items-center group relative min-w-0 whitespace-nowrap px-2'>
                                         <div className="flex-shrink-0 w-4 h-4 flex items-center justify-center">
-                                            <img 
-                                                src={item.iconPath} 
-                                                alt={item.name} 
-                                                width={16} 
-                                                height={16} 
+                                            <img
+                                                src={item.iconPath}
+                                                alt={item.name}
+                                                width={16}
+                                                height={16}
                                                 className="w-4 h-4 object-contain"
                                             />
                                         </div>
                                         <span className="ml-2 text-sm relative whitespace-nowrap">
                                             {item.name}
-                                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FB6F92] transition-all duration-300 group-hover:w-full"></span>
                                         </span>
-                                    </a>
+                                    </span>
                                 </li>
                             ))}
                         </ul>
@@ -85,29 +77,25 @@ export default function Header() {
                         <ul className='flex flex-wrap gap-4 lg:gap-8 justify-center lg:justify-start'>
                             {navItems.map((item, index) => (
                                 <li key={index} className="flex-shrink-0">
-                                    <a 
-                                        href={item.path} 
-                                        className='flex items-center group relative min-w-0'
-                                    >
+                                    <span className='flex items-center relative min-w-0'>
                                         <div className="flex-shrink-0 w-4 h-4 flex items-center justify-center">
-                                            <img 
-                                                src={item.iconPath} 
-                                                alt={item.name} 
-                                                width={16} 
-                                                height={16} 
+                                            <img
+                                                src={item.iconPath}
+                                                alt={item.name}
+                                                width={16}
+                                                height={16}
                                                 className="w-4 h-4 object-contain"
                                             />
                                         </div>
                                         <span className="ml-2 text-sm relative whitespace-nowrap">
                                             {item.name}
-                                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FB6F92] transition-all duration-300 group-hover:w-full"></span>
                                         </span>
-                                    </a>
+                                    </span>
                                 </li>
                             ))}
                         </ul>
                     </div>
-                </nav>
+                </nav> */}
         </header>
     )
 }
