@@ -7,7 +7,8 @@ export default function Contact() {
       
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Left panel - Contact Information */}
-        <div className="w-full lg:w-1/3 bg-white border-[#BDE0FE] border-28  p-6 rounded-3xl">
+        <div className="w-full lg:w-1/3 bg-[#BDE0FE] p-7 rounded-3xl">
+        <div className="h-full bg-white p-6 rounded-2xl">
           {/* Visit Us Button */}
             <button 
               className="px-4 py-2 text-sm text-[#0072E6] bg-white rounded-full border-1 border-[#0072E6] hover:bg-blue-600 transition-colors mb-4"
@@ -81,13 +82,14 @@ export default function Contact() {
             <a target='_blank' href='https://2gis.kz/almaty/firm/70000001102401716'>Получить местоположение в 2gis</a>
           </button>
         </div>
+        </div>
         
         {/* Right panel - Map placeholder */}
-        <div className="w-full lg:w-2/3 bg-gray-200 min-h-[300px] md:min-h-[400px] flex items-center justify-center rounded-3xl">
+        <div className="w-full lg:w-2/3 bg-gray-200 min-h-[300px] md:min-h-[400px] flex rounded-3xl overflow-hidden">
           <iframe
             style={{ border: 0, borderRadius: '1.5rem' }}
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2904.648639139451!2d76.8889727!3d43.279736299999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836bc6c96e2e81%3A0xf14f0854bdaac884!2sAdem%202%2C3!5e0!3m2!1sen!2skz!4v1749727580316!5m2!1sen!2skz"
-            className="w-full h-[300px] md:h-[400px]"
+            className="w-full min-h-[300px] md:min-h-[400px]"
             loading="lazy"
             >
           </iframe>

@@ -17,7 +17,7 @@ export default function Header() {
                     </span>
                 </div>
                 
-                <div className="hidden lg:flex w-full lg:flex-1 lg:max-w-md lg:mx-8">
+                <div className="hidden lg:flex w-full lg:flex-1 lg:mx-8">
                     <SearchInput  />
                 </div>
                 
