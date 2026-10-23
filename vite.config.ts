@@ -8,4 +8,14 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
+  server: {
+    // The backend has no CORS headers, so proxy API calls through the dev server.
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 })

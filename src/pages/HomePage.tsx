@@ -1,10 +1,10 @@
-import Banner from "./components/Banner";
-import Header from "./components/Header"
-import HeroSlider from "./components/HeroSlider";
-import HitProducts from "./components/HitProducts";
-import Contact from "./components/Contact";
-import StoreImages from "./components/StoreImages";
-import Footer from "./components/Footer";
+import Banner from "../components/Banner";
+import Header from "../components/Header"
+import HeroSlider from "../components/HeroSlider";
+import HitProducts from "../components/HitProducts";
+import Contact from "../components/Contact";
+import StoreImages from "../components/StoreImages";
+import Footer from "../components/Footer";
 
 
 const sliderData = [
@@ -50,7 +50,7 @@ const bannerData = [
 ]
 
 
-function App() {
+function HomePage() {
 
   return (
     <>
@@ -66,4 +66,4 @@ function App() {
   )
 }
 
-export default App
+export default HomePage

@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-ui: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
 /* Hide scrollbar for mobile navigation */
 .scrollbar-hide {
   -ms-overflow-style: none;
