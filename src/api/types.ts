@@ -1,5 +1,5 @@
 // DTOs mirrored from the backend Swagger spec (http://localhost:8080/swagger/doc.json).
-// Field names match the Go structs exactly (PascalCase).
+// Field names match the Go structs exactly (PascalCase); pgtype.* columns are nullable.
 
 export type UserRole = 'user' | 'admin';
 
@@ -31,7 +31,7 @@ export interface Category {
 
 export interface Product {
     ID: number;
-    CategoryID: number;
+    CategoryID: number | null;
     Name: string;
     Slug: string;
     Description: string;
@@ -40,22 +40,39 @@ export interface Product {
     UpdatedAt: string;
 }
 
+export interface CreateProductRequest {
+    Name: string;
+    Slug: string;
+    Description: string;
+    CategoryID: number | null;
+    IsActive: boolean;
+}
+
 export interface ProductVariant {
     ID: number;
     ProductID: number;
     Name: string;
     Price: number;
-    WholesalePrice: number;
-    WholesaleMinQty: number;
+    WholesalePrice: number | null;
+    WholesaleMinQty: number | null;
     IsActive: boolean;
     CreatedAt: string;
     UpdatedAt: string;
 }
 
+export interface CreateVariantRequest {
+    ProductID: number;
+    Name: string;
+    Price: number;
+    WholesalePrice: number | null;
+    WholesaleMinQty: number | null;
+    IsActive: boolean;
+}
+
 export interface ProductImage {
     ID: number;
     ProductID: number;
-    VariantID: number;
+    VariantID: number | null;
     S3Key: string;
     ContentType: string;
     Position: number;
@@ -68,7 +85,7 @@ export interface Order {
     ID: number;
     CustomerName: string;
     CustomerPhone: string;
-    Comment: string;
+    Comment: string | null;
     Status: OrderStatus;
     TotalPrice: number;
     CreatedAt: string;
