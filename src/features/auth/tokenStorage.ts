@@ -2,6 +2,8 @@ const STORAGE_KEY = 'lumea.accessToken';
 
 export interface TokenPayload {
     exp?: number;
+    // Username.
+    sub?: string;
     role?: string;
     [claim: string]: unknown;
 }
