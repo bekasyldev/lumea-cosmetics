@@ -1,8 +1,29 @@
 @import "tailwindcss";
 
+/* Admin design tokens (from the "Админка Lumea" design export). */
 @theme {
   --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-ui: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-ui: "Onest", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #5a1b3b;
+  --color-ink-hover: #45122c;
+  --color-cream: #fffefc;
+  --color-wash: #fff6fa;
+  --color-mint: #ffc8dd;
+  --color-pink: #ffafcc;
+  --color-lavender: #cdb4db;
+  --color-sky: #bde0fe;
+  --color-blue: #a2d2ff;
+  --color-brand-pink: #e04a82;
+  --color-charcoal: #222222;
+  --color-muted: #6b5260;
+  --color-line: #efeeeb;
+  --color-line-strong: #d9d3d6;
+  --color-input-border: #d9a2bb;
+  --color-hollow: #c98aa6;
+  --color-danger: #b3123f;
+  --color-danger-hover: #8f0e32;
+  --color-danger-tint: #ffe3ea;
 }
 
 /* Hide scrollbar for mobile navigation */
@@ -33,4 +54,9 @@
 /* Pause animation on hover/touch */
 .animate-scroll-infinite:hover {
   animation-play-state: paused;
+}
+/* Admin: visible keyboard focus, as in the design export. */
+.admin-ui :focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
 }
