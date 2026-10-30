@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 import type { CatalogFilters as Filters } from '../../features/catalog/filterProducts';
-import { CATEGORIES, sampleProducts } from '../../data/products';
+import type { Product } from '../ProductCard';
+import type { StorefrontCategory } from '../../features/products/mapProduct';
 
 interface Props {
   filters: Filters;
@@ -12,6 +13,8 @@ interface Props {
   open?: boolean;
   onClose?: () => void;
   resultCount: number;
+  products: Product[];
+  categories: StorefrontCategory[];
 }
 
 function Toggle({ label, checked, onChange }: { label: string; checked: boolean; onChange: (v: boolean) => void }) {
@@ -67,14 +70,17 @@ function PriceInputs({ filters, onChange }: Pick<Props, 'filters' | 'onChange'>)
   );
 }
 
-function Categories({ filters, onChange }: Pick<Props, 'filters' | 'onChange'>) {
-  const items = [{ id: '', name: 'Все товары' }, ...CATEGORIES];
+function Categories({ filters, onChange, products, categories }: Pick<Props, 'filters' | 'onChange' | 'products' | 'categories'>) {
+  const counts = new Map<string, number>();
+  products.forEach((p) => p.category && counts.set(p.category.id, (counts.get(p.category.id) ?? 0) + 1));
+  // hide categories that have no visible products
+  const items = [{ id: '', name: 'Все товары' }, ...categories.filter((c) => counts.has(c.id))];
   return (
     <div>
       <h3 className="text-sm font-semibold text-[#33333D] mb-2">Категории</h3>
       <ul>
         {items.map((c) => {
-          const count = c.id ? sampleProducts.filter((p) => p.category?.id === c.id).length : sampleProducts.length;
+          const count = c.id ? (counts.get(c.id) ?? 0) : products.length;
           const active = filters.category === c.id;
           return (
             <li key={c.id || 'all'}>
@@ -97,8 +103,8 @@ function Categories({ filters, onChange }: Pick<Props, 'filters' | 'onChange'>) 
   );
 }
 
-function Featured() {
-  const items = sampleProducts.filter((p) => p.isBestSeller).slice(0, 4);
+function Featured({ products }: Pick<Props, 'products'>) {
+  const items = products.filter((p) => p.isBestSeller).slice(0, 4);
   return (
     <div className="mt-8">
       <h3 className="text-lg font-medium text-[#33333D] mb-4">Хиты продаж</h3>
@@ -124,10 +130,10 @@ function Featured() {
   );
 }
 
-function Body({ filters, onChange, onReset, resetDisabled }: Props) {
+function Body({ filters, onChange, onReset, resetDisabled, products, categories }: Props) {
   return (
     <div className="space-y-5">
-      <Categories filters={filters} onChange={onChange} />
+      <Categories filters={filters} onChange={onChange} products={products} categories={categories} />
       <div className="border-t border-gray-100 pt-5">
       <div>
         <h3 className="text-sm font-semibold text-[#33333D] mb-2">Цена, ₸</h3>
@@ -198,7 +204,7 @@ export default function CatalogFilters(props: Props) {
           <h2 className="text-lg font-medium text-[#33333D] mb-4">Фильтры</h2>
           <Body {...props} />
         </div>
-        <Featured />
+        <Featured products={props.products} />
       </aside>
 
       {/* Mobile drawer */}

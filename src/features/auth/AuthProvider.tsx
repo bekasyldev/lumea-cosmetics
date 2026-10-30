@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { refreshToken } from '../../api/auth';
 import { ApiError } from '../../api/client';
@@ -19,13 +19,19 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     // Stay in sync with token changes from outside React (e.g. apiFetch clearing it on 401).
     useEffect(() => tokenStorage.subscribe(setToken), []);
 
+    // Whether a session existed, so the cache is only wiped on logout — not on mount for anonymous
+    // storefront visitors, where clearing would cancel the page's in-flight queries and leave them pending.
+    const hadSession = useRef(token !== null);
+
     // Refresh the access token shortly before it expires; log out if the refresh token is rejected
     // or the token expires without a successful refresh.
     useEffect(() => {
         if (!token) {
-            queryClient.clear();
+            if (hadSession.current) queryClient.clear();
+            hadSession.current = false;
             return;
         }
+        hadSession.current = true;
 
         let cancelled = false;
         let timeout: ReturnType<typeof setTimeout>;

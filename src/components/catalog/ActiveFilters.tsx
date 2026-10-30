@@ -1,20 +1,21 @@
 import { X } from 'lucide-react';
-import { CATEGORIES } from '../../data/products';
+import type { StorefrontCategory } from '../../features/products/mapProduct';
 import type { CatalogFilters } from '../../features/catalog/filterProducts';
 
 interface Props {
   filters: CatalogFilters;
   onChange: (patch: Partial<CatalogFilters>) => void;
   onReset: () => void;
+  categories: StorefrontCategory[];
 }
 
 const fmt = (n: number) => n.toLocaleString('ru-RU');
 
-export default function ActiveFilters({ filters, onChange, onReset }: Props) {
+export default function ActiveFilters({ filters, onChange, onReset, categories }: Props) {
   const chips: { key: string; label: string; clear: () => void }[] = [];
 
   if (filters.category) {
-    const c = CATEGORIES.find((c) => c.id === filters.category);
+    const c = categories.find((c) => c.id === filters.category);
     chips.push({ key: 'cat', label: c?.name ?? filters.category, clear: () => onChange({ category: '' }) });
   }
   if (filters.q.trim()) chips.push({ key: 'q', label: `«${filters.q.trim()}»`, clear: () => onChange({ q: '' }) });

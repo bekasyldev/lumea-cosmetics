@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 import CatalogFilters from '../components/catalog/CatalogFilters';
 import ActiveFilters from '../components/catalog/ActiveFilters';
-import { sampleProducts } from '../data/products';
+import { useStorefrontProducts } from '../features/products/useStorefrontProducts';
 import {
   SORT_OPTIONS,
   filterProducts,
@@ -28,6 +28,7 @@ const plural = (n: number) => {
 };
 
 export default function CatalogPage() {
+  const { products, categories, isLoading, isError, refetch } = useStorefrontProducts();
   const [params, setParams] = useSearchParams();
   const filters = useMemo(() => parseFilters(params), [params]);
   const paramsKey = params.toString();
@@ -70,7 +71,7 @@ export default function CatalogPage() {
     document.getElementById('catalog-results')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
-  const results = useMemo(() => filterProducts(sampleProducts, filters), [filters]);
+  const results = useMemo(() => filterProducts(products, filters), [products, filters]);
   const pageCount = Math.max(1, Math.ceil(results.length / PAGE_SIZE));
   const current = Math.min(page, pageCount);
   const from = (current - 1) * PAGE_SIZE;
@@ -140,7 +141,7 @@ export default function CatalogPage() {
           </div>
         </div>
 
-        <ActiveFilters filters={filters} onChange={update} onReset={reset} />
+        <ActiveFilters filters={filters} onChange={update} onReset={reset} categories={categories} />
 
         <div id="catalog-results" className="flex gap-8 items-start scroll-mt-4">
           <CatalogFilters
@@ -151,10 +152,30 @@ export default function CatalogPage() {
             open={drawerOpen}
             onClose={() => setDrawerOpen(false)}
             resultCount={results.length}
+            products={products}
+            categories={categories}
           />
 
           <section className="flex-1 min-w-0">
-            {results.length === 0 ? (
+            {isLoading ? (
+              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-3 gap-y-5">
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <div key={i} className="bg-gray-100 rounded-lg aspect-[3/4] animate-pulse" />
+                ))}
+              </div>
+            ) : isError ? (
+              <div className="flex flex-col items-center text-center py-20">
+                <h2 className="text-xl font-medium text-[#33333D] mb-1">Не удалось загрузить товары</h2>
+                <p className="text-sm text-gray-500 mb-5">Проверьте соединение и попробуйте ещё раз</p>
+                <button
+                  type="button"
+                  onClick={refetch}
+                  className="h-11 px-6 rounded-full bg-[#FB6F92] text-white text-sm font-semibold hover:bg-[#f95a82] transition-colors"
+                >
+                  Повторить
+                </button>
+              </div>
+            ) : results.length === 0 ? (
               <div className="flex flex-col items-center text-center py-20">
                 <div className="w-16 h-16 rounded-full bg-[#FFE1EC] flex items-center justify-center mb-4">
                   <Search size={28} className="text-[#FB6F92]" />
