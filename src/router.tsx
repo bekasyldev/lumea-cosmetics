@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import CatalogPage from './pages/CatalogPage';
 import LoginPage from './pages/admin/LoginPage';
 import OrdersPage from './pages/admin/OrdersPage';
 import ProductsPage from './pages/admin/ProductsPage';
@@ -11,6 +12,7 @@ import RequireAuth from './features/auth/RequireAuth';
 
 export const router = createBrowserRouter([
     { path: '/', element: <HomePage /> },
+    { path: '/catalog', element: <CatalogPage /> },
     { path: '/admin/login', element: <LoginPage /> },
     {
         path: '/admin',

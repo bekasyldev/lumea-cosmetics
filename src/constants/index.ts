@@ -48,6 +48,11 @@ export const navItems = [
 
 export const headerButtons = [
     {
+        title: 'Каталог',
+        path: '/catalog',
+        iconPath: '/icons/cosmetics.svg',
+    },
+    {
         title: 'Избранное',
         path: '/favorite',
         iconPath: '/icons/favorite.svg',

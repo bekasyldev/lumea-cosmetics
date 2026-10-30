@@ -14,7 +14,7 @@ const sliderData = [
     title: 'Косметики с оптовым цеником в Алматы',
     subtitle: 'Скидки до 50% на весь ассортимент',
     buttonText: 'КАТАЛОГ',
-    buttonLink: '#',
+    buttonLink: '/catalog',
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const sliderData = [
     title: 'Новая коллекция средств для ухода',
     subtitle: 'Натуральные ингредиенты для вашей кожи',
     buttonText: 'ПОДРОБНЕЕ',
-    buttonLink: '#',
+    buttonLink: '/catalog',
   },
 ];
 

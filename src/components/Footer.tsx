@@ -1,18 +1,20 @@
+import { Instagram, MessageCircle, Send } from 'lucide-react';
+
 const socialLinks = [
     {
         name: 'Telegram',
         url: 'https://t.me/yourchannel',
-        icon: '/icons/tg.svg',
+        Icon: Send,
     },
     {
         name: 'Instagram',
         url: 'https://instagram.com/yourprofile',
-        icon: '/icons/insta.svg',
+        Icon: Instagram,
     },
     {
         name: 'WhatsApp',
         url: 'https://wa.me/7053371911',
-        icon: '/icons/whatsapp.svg',
+        Icon: MessageCircle,
     },
 ]
 
@@ -33,15 +35,16 @@ const footerLinks: FooterSection[] = [
         name: 'Магазин',
         key: 'store',
         childrens: [
-            { name: 'Контакты', path: '#contacts' },
+            { name: 'Каталог', path: '/catalog' },
+            { name: 'Контакты', path: '/#contacts' },
         ]
     },
     {
         name: 'Покупателю',
         key: 'customer',
         childrens: [
-            { name: 'Доставка', path: '#banner' }, 
-            { name: 'Оплата', path: '#banner' },
+            { name: 'Доставка', path: '/#banner' }, 
+            { name: 'Оплата', path: '/#banner' },
         ]
     },
 //     {
@@ -105,49 +108,53 @@ const footerLinks: FooterSection[] = [
 ]
 
 export default function Footer() {
+    const contacts = [
+        { icon: '/icons/location.svg', text: 'Доставка по всему городу' },
+        { icon: '/icons/phone.svg', text: '+7(705) 337 19 11' },
+        { icon: '/icons/clock.svg', text: 'с 8:00 до 19:00' },
+    ];
+
     return (
-        <footer className="py-6 sm:py-8 lg:py-10 px-4">
-            <div className="container mx-auto flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-0">
+        <footer className="bg-[#33333D] text-white mt-12">
+            <div className="container mx-auto px-4 py-10 sm:py-12 flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-0">
                 <div className="w-full lg:w-auto">
-                    <h3 className='text-2xl sm:text-2xl font-bold text-[#FB6F92] mb-6 sm:mb-8'>Lumea Beauty</h3>
-                    <div className='flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4'>
-                        <img src="/icons/location.svg" alt="location icon" className="w-5 h-5 sm:w-5 sm:h-5 flex-shrink-0" />
-                        <span className="text-base sm:text-base">Доставка по всему городу</span>
-                    </div>
-                    <div className='flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4'>
-                        <img src="/icons/phone.svg" alt="phone icon" className="w-5 h-5 sm:w-5 sm:h-5 flex-shrink-0" />
-                        <span className="text-base sm:text-base">+7(705) 337 19 11 </span>
-                    </div>
-                    <div className='flex items-center space-x-2 sm:space-x-3 mb-4 sm:mb-6'>
-                        <img src="/icons/clock.svg" alt="clock icon" className="w-5 h-5 sm:w-5 sm:h-5 flex-shrink-0" />
-                        <span className="text-base sm:text-base">с 8:00 до 19:00</span>
-                    </div>
-                    <div className="flex space-x-3 sm:space-x-4">
+                    <h3 className="text-2xl font-bold text-[#FB6F92] mb-2">Lumea Beauty</h3>
+                    <p className="text-sm text-white/60 mb-6 max-w-xs">Косметика и уход для вас — с доставкой по Алматы.</p>
+                    <ul className="space-y-3 mb-6">
+                        {contacts.map((c) => (
+                            <li key={c.icon} className="flex items-center gap-3">
+                                <img src={c.icon} alt="" className="w-5 h-5 flex-shrink-0 brightness-0 invert opacity-80" />
+                                <span className="text-sm text-white/90">{c.text}</span>
+                            </li>
+                        ))}
+                    </ul>
+                    <div className="flex gap-3">
                         {socialLinks.map((link) => (
-                            <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
-                                <img src={link.icon} alt={`${link.name} icon`} className="w-8 h-8 sm:w-8 sm:h-8" />
+                            <a
+                                key={link.url}
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={link.name}
+                                className="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center transition-colors hover:bg-[#FB6F92]"
+                            >
+                                <link.Icon size={20} className="text-white" />
                             </a>
                         ))}
                     </div>
                 </div>
                 <div className="hidden md:block w-full lg:w-auto lg:flex-1 lg:max-w-2xl">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
                         {footerLinks.map((section) => (
                             <div key={section.key}>
-                                <h3 className="text-[#7E8B91] font-semibold mb-3 sm:mb-4 text-base sm:text-base">{section.name}</h3>
-                                <ul className="space-y-2 sm:space-y-3 lg:space-y-4">
+                                <h3 className="text-white font-semibold mb-4">{section.name}</h3>
+                                <ul className="space-y-3">
                                     {section.childrens.map((link) => (
-                                        <li key={link.path} className="flex items-center">
-                                            {link.iconPath && <img src={link.iconPath} alt={`${link.name} icon`} className="inline-block w-4 h-4 sm:w-4 sm:h-4 mr-2 sm:mr-3 flex-shrink-0" />}
-                                            {link.iconPath ? (
-                                                <span className="text-[#33333D] font-normal text-sm sm:text-sm leading-relaxed">
-                                                    {link.name}
-                                                </span>
-                                            ) : (
-                                                <a href={link.path} className="text-[#33333D] hover:text-gray-800 font-normal text-sm sm:text-sm leading-relaxed">
-                                                    {link.name}
-                                                </a>
-                                            )}
+                                        <li key={link.name} className="flex items-center">
+                                            {link.iconPath && <img src={link.iconPath} alt="" className="inline-block w-4 h-4 mr-3 flex-shrink-0 brightness-0 invert" />}
+                                            <a href={link.path} className="text-sm text-white/70 hover:text-[#FB6F92] transition-colors">
+                                                {link.name}
+                                            </a>
                                         </li>
                                     ))}
                                 </ul>
@@ -156,6 +163,11 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
+            <div className="border-t border-white/10">
+                <div className="container mx-auto px-4 py-4 text-xs text-white/50 text-center sm:text-left">
+                    © {new Date().getFullYear()} Lumea Beauty. Все права защищены.
+                </div>
+            </div>
         </footer>
     );
-    }
+}
