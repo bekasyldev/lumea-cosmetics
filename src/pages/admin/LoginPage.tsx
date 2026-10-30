@@ -97,8 +97,6 @@ export default function LoginPage() {
                         </form>
                     </div>
                 </main>
-
-                <p className="text-sm text-muted">Сессия действует 15 минут, затем нужно войти снова.</p>
             </div>
 
             <LoginVisual />

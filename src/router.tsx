@@ -4,6 +4,7 @@ import LoginPage from './pages/admin/LoginPage';
 import OrdersPage from './pages/admin/OrdersPage';
 import ProductsPage from './pages/admin/ProductsPage';
 import ProductPage from './pages/admin/ProductPage';
+import UsersPage from './pages/admin/UsersPage';
 import ComingSoonPage from './pages/admin/ComingSoonPage';
 import AdminLayout from './layouts/AdminLayout';
 import RequireAuth from './features/auth/RequireAuth';
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
                     { path: 'products', element: <ProductsPage /> },
                     { path: 'products/:id', element: <ProductPage /> },
                     { path: 'categories', element: <ComingSoonPage title="Категории" /> },
-                    { path: 'users', element: <ComingSoonPage title="Пользователи" /> },
+                    { path: 'users', element: <UsersPage /> },
                 ],
             },
         ],

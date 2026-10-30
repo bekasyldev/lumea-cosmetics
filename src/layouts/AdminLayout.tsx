@@ -75,7 +75,7 @@ export default function AdminLayout() {
                             </span>
                             <div className="min-w-0">
                                 <p className="truncate font-medium text-ink">{username}</p>
-                                <p className="text-xs text-muted">Администратор · сессия 15 мин</p>
+                                <p className="text-xs text-muted">Администратор</p>
                             </div>
                         </div>
                         <button type="button" onClick={signOut} className={`${btn.ghost} justify-start`}>
