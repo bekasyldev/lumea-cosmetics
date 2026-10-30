@@ -29,6 +29,11 @@ export interface Category {
     UpdatedAt: string;
 }
 
+export interface CategoryRequest {
+    Name: string;
+    Slug: string;
+}
+
 export interface Product {
     ID: number;
     CategoryID: number | null;
